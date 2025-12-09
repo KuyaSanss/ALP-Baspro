@@ -4,7 +4,7 @@ public class main {
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
 
-        char[][] grid = new char[11][11];
+        String[][] grid = new String[11][11];
         String choice = "c";
         int wChoice = 1;
         int lChoice;
@@ -13,12 +13,13 @@ public class main {
         boolean UPw3 = true;
         int trash = 0;
 
-        //color
-        String red    = "\u001B[31m";
-        String green  = "\u001B[32m";
-        String reset  = "\u001B[0m";
+        // color
+        String red = "\u001B[31m";
+        String green = "\u001B[32m";
+        String blue = "\u001b[0;38;2;135;206;235;49m";
+        String reset = "\u001B[0m";
 
-        //level
+        // level
         String l1 = green + "1" + reset;
         String l2 = red + "2" + reset;
         String l3 = red + "3" + reset;
@@ -39,20 +40,19 @@ public class main {
         boolean done7 = false;
         boolean done8 = false;
         boolean done9 = false;
-        
 
-        //weapon list
+        // weapon list
         String w1 = green + "Original Net" + reset;
         String w2 = red + "Medium Net" + reset;
         String w3 = red + "Giganto Netto" + reset;
 
-        for (int i = 0 ; i < 11 ; i++) {
-            for (int j = 0 ; j < 11 ; j++) {
-                grid[i][j] = '~';
+        for (int i = 0; i < 11; i++) {
+            for (int j = 0; j < 11; j++) {
+                grid[i][j] = blue + "~" + reset;
             }
         }
 
-        grid[10][5] = 'p';
+        grid[10][5] = "p";
 
         do {
             System.out.println("=========== Welcome to Clean The Ocean ===========");
@@ -84,12 +84,20 @@ public class main {
                     System.out.println("11 = exit");
                     System.out.print("what level you want to play (1-10): ");
                     lvChoice = sc.nextInt();
+                    System.out.println();
 
                     if (lvChoice == 1) {
-                        
+                        System.out.println("trash remaining: ");
+
+                        for (int i = 0; i < 11; i++) {
+                            for (int j = 0; j < 11; j++) {
+                                System.out.print(grid[i][j] + "\t");
+                            }
+                            System.out.println();
+                        }
                     }
                 } while (lvChoice != 11);
-                
+
             } else if (choice.equalsIgnoreCase("b")) {
                 do {
                     System.out.println("trash: " + trash);
@@ -108,7 +116,7 @@ public class main {
                             System.out.println("1. yes");
                             System.out.println("2. no");
                             int buy = sc.nextInt();
-                            
+
                             if (buy == 1) {
                                 if (trash > 20) {
                                     wChoice = 2;
@@ -119,7 +127,7 @@ public class main {
                                 } else {
                                     System.out.println(red + "you dont have enough trash!!" + reset);
                                 }
-                            } 
+                            }
                         } else {
                             wChoice = 2;
                             System.out.println("weapon equipped");
@@ -130,7 +138,7 @@ public class main {
                             System.out.println("1. yes");
                             System.out.println("2. no");
                             int buy = sc.nextInt();
-                            
+
                             if (buy == 1) {
                                 if (trash > 40) {
                                     wChoice = 3;
@@ -141,16 +149,16 @@ public class main {
                                 } else {
                                     System.out.println(red + "you dont have enough trash!!" + reset);
                                 }
-                            } 
+                            }
                         } else {
                             wChoice = 2;
                             System.out.println("weapon equipped");
                         }
-                    } 
+                    }
                     System.out.println();
                 } while (lChoice != 4);
-                
+
             }
-        } while (!choice.equalsIgnoreCase("a"));
+        } while (!choice.equalsIgnoreCase("c"));
     }
 }
