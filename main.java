@@ -1,8 +1,10 @@
+import java.util.Random;
 import java.util.Scanner;
 
 public class main {
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
+        Random rand = new Random();
 
         String[][] grid = new String[11][11];
         String choice = "c";
@@ -12,11 +14,20 @@ public class main {
         boolean UPw2 = true;
         boolean UPw3 = true;
         int trash = 0;
+        int enemyCount = 0;
+        int x = 5;
+        int y = 10;
+        int[] enemyPosX = new int[9];
+        int[] enemyPosY = new int[9];
+        int checkX;
+        int checkY;
+        boolean dupe;
 
         // color
         String red = "\u001B[31m";
         String green = "\u001B[32m";
         String blue = "\u001b[0;38;2;135;206;235;49m";
+        String dBlue = "\u001B[34m";
         String reset = "\u001B[0m";
 
         // level
@@ -48,11 +59,11 @@ public class main {
 
         for (int i = 0; i < 11; i++) {
             for (int j = 0; j < 11; j++) {
-                grid[i][j] = blue + "~" + reset;
+                grid[i][j] = dBlue + "~" + reset;
             }
         }
 
-        grid[10][5] = "p";
+        grid[y][x] = "p";
 
         do {
             System.out.println("=========== Welcome to Clean The Ocean ===========");
@@ -87,14 +98,84 @@ public class main {
                     System.out.println();
 
                     if (lvChoice == 1) {
-                        System.out.println("trash remaining: ");
+                        x = 5;
+                        y = 10;
+                        for (int i = 0; i < 7; i++) {
+                            do {
+                                dupe = false;
 
-                        for (int i = 0; i < 11; i++) {
-                            for (int j = 0; j < 11; j++) {
-                                System.out.print(grid[i][j] + "\t");
+                                checkX = rand.nextInt(10) + 1;
+                                checkY = rand.nextInt(10) + 1;
+
+                                // cek apakah sama dengan musuh lain
+                                for (int j = 0; j < i; j++) {
+                                    if (enemyPosX[j] == checkX && enemyPosY[j] == checkY) {
+                                        dupe = true; 
+                                        break;
+                                    }
+                                }
+
+                            } while (dupe); 
+
+                            enemyPosX[i] = checkX;
+                            enemyPosY[i] = checkY;
+                        }
+                        enemyCount = 7;
+                        System.out.println("Level 1: Clean 7 trash!");
+                        do {
+                            System.out.println("trash remaining: " + enemyCount);
+                            for (int i = 0; i < 11; i++) {
+                                for (int j = 0; j < 11; j++) {
+                                    System.out.print(grid[i][j] + "\t");
+                                }
+                                System.out.println();
+                            }
+                            System.out.print("Move: ");
+                            String move = sc.next() + sc.nextLine();
+
+                            int[] pos = movePlayer(grid, x, y, move, blue, reset);
+                            x = pos[0];
+                            y = pos[1];
+
+                            for (int i = 0; i < enemyCount; i++) {
+                                if (x == enemyPosX[i] && y == enemyPosY[i]) {
+                                    System.out.println(green + "You caught some trash!" + reset);
+                                    // remove enemy
+                                    for (int j = i; j < enemyCount - 1; j++) {
+                                        enemyPosX[j] = enemyPosX[j + 1];
+                                        enemyPosY[j] = enemyPosY[j + 1];
+                                    }
+                                    enemyCount--;
+                                    trash++;
+                                    break;
+                                }
                             }
                             System.out.println();
-                        }
+                            System.out.println();
+                            System.out.println();
+                            System.out.println();
+                            System.out.println();
+                            System.out.println();
+                            System.out.println();
+                            System.out.println();
+                            System.out.println();
+                            System.out.println();
+                            System.out.println();
+                            System.out.println();
+                            System.out.println();
+                            System.out.println();
+                            System.out.println();
+                            System.out.println();
+                            System.out.println();
+                            System.out.println();
+                            System.out.println();
+                            System.out.println();
+                            System.out.println();
+                            System.out.println();
+                            System.out.println();
+                            System.out.println();
+                        } while (enemyCount > 0);
+                        System.out.println("" + green + "You did it!! The Ocean is now clean" + reset);
                     }
                 } while (lvChoice != 11);
 
@@ -160,5 +241,34 @@ public class main {
 
             }
         } while (!choice.equalsIgnoreCase("c"));
+    }
+
+    public static int[] movePlayer(String[][] grid, int x, int y, String move, String blue, String reset) {
+
+        grid[y][x] = blue + "~" + reset;
+
+        if (move.equalsIgnoreCase("a")) {
+            x -= 1;
+        } else if (move.equalsIgnoreCase("d")) {
+            x += 1;
+        } else if (move.equalsIgnoreCase("w")) {
+            y -= 1;
+        } else if (move.equalsIgnoreCase("s")) {
+            y += 1;
+        }
+
+        // batas grid
+        if (x < 0)
+            x = 0;
+        if (x > 10)
+            x = 10;
+        if (y < 0)
+            y = 0;
+        if (y > 10)
+            y = 10;
+
+        grid[y][x] = "p";
+
+        return new int[] { x, y };
     }
 }
