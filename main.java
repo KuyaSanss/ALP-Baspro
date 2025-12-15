@@ -42,7 +42,7 @@ public class main {
         String l9 = red + "9" + reset;
         String l10 = red + "10" + reset;
 
-        boolean done1 = true;
+        boolean done1 = false;
         boolean done2 = false;
         boolean done3 = false;
         boolean done4 = false;
@@ -50,7 +50,7 @@ public class main {
         boolean done6 = false;
         boolean done7 = false;
         boolean done8 = false;
-        boolean done9 = true;
+        boolean done9 = false;
 
         // weapon list
         String w1 = green + "Original Net" + reset;
