@@ -50,7 +50,7 @@ public class main {
         boolean done6 = false;
         boolean done7 = false;
         boolean done8 = false;
-        boolean done9 = false;
+        boolean done9 = true;
 
         // weapon list
         String w1 = green + "Original Net" + reset;
