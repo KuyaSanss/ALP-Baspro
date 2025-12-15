@@ -50,7 +50,7 @@ public class main {
         boolean done6 = false;
         boolean done7 = false;
         boolean done8 = false;
-        boolean done9 = false;
+        boolean done9 = true;
 
         // weapon list
         String w1 = green + "Original Net" + reset;
@@ -63,9 +63,13 @@ public class main {
             }
         }
 
-        grid[y][x] = "p";
+        grid[y][x] = "O";
 
         do {
+            for (int i = 0; i < 25; i++) {
+                System.out.println();
+            }
+
             System.out.println("=========== Welcome to Clean The Ocean ===========");
             System.out.println("A. Clean!");
             System.out.println("B. Weapon selector");
@@ -73,12 +77,12 @@ public class main {
             choice = sc.next() + sc.nextLine();
             System.out.println();
 
-            if (choice.equalsIgnoreCase("z")) {
-                trash = 99999;
-            }
-
             if (choice.equalsIgnoreCase("a")) {
                 do {
+                    for (int i = 0; i < 30; i++) {
+                        System.out.println();
+                    }
+
                     System.out.println("=========== Level Selector ===========");
                     System.out.print(l1 + "\t");
                     System.out.print(l2 + "\t");
@@ -107,15 +111,14 @@ public class main {
                                 checkX = rand.nextInt(10) + 1;
                                 checkY = rand.nextInt(10) + 1;
 
-                                // cek apakah sama dengan musuh lain
                                 for (int j = 0; j < i; j++) {
                                     if (enemyPosX[j] == checkX && enemyPosY[j] == checkY) {
-                                        dupe = true; 
+                                        dupe = true;
                                         break;
                                     }
                                 }
 
-                            } while (dupe); 
+                            } while (dupe);
 
                             enemyPosX[i] = checkX;
                             enemyPosY[i] = checkY;
@@ -137,10 +140,17 @@ public class main {
                             x = pos[0];
                             y = pos[1];
 
+                            if (move.equalsIgnoreCase("z")) {
+                                enemyCount = 0;
+                            }
+
+                            for (int i = 0; i < 25; i++) {
+                                System.out.println();
+                            }
+
                             for (int i = 0; i < enemyCount; i++) {
                                 if (x == enemyPosX[i] && y == enemyPosY[i]) {
                                     System.out.println(green + "You caught some trash!" + reset);
-                                    // remove enemy
                                     for (int j = i; j < enemyCount - 1; j++) {
                                         enemyPosX[j] = enemyPosX[j + 1];
                                         enemyPosY[j] = enemyPosY[j + 1];
@@ -150,37 +160,126 @@ public class main {
                                     break;
                                 }
                             }
-                            System.out.println();
-                            System.out.println();
-                            System.out.println();
-                            System.out.println();
-                            System.out.println();
-                            System.out.println();
-                            System.out.println();
-                            System.out.println();
-                            System.out.println();
-                            System.out.println();
-                            System.out.println();
-                            System.out.println();
-                            System.out.println();
-                            System.out.println();
-                            System.out.println();
-                            System.out.println();
-                            System.out.println();
-                            System.out.println();
-                            System.out.println();
-                            System.out.println();
-                            System.out.println();
-                            System.out.println();
-                            System.out.println();
-                            System.out.println();
+
+                            if (enemyCount == 0) {
+                                done1 = true;
+                                l2 = green + "2" + reset;
+                                for (int i = 0; i < 11; i++) {
+                                    for (int j = 0; j < 11; j++) {
+                                        grid[i][j] = dBlue + "~" + reset;
+                                    }
+                                }
+                                x = 5;
+                                y = 10;
+                                grid[y][x] = "O";
+                            }
+
                         } while (enemyCount > 0);
                         System.out.println("" + green + "You did it!! The Ocean is now clean" + reset);
+                    } else if (lvChoice == 2) {
+                        if (!done1) {
+                            System.out.println(red + "You need to complete previous level first!" + reset);
+                        } else {
+                            x = 5;
+                            y = 10;
+                            for (int i = 0; i < 7; i++) {
+                                do {
+                                    dupe = false;
+
+                                    checkX = rand.nextInt(10) + 1;
+                                    checkY = rand.nextInt(10) + 1;
+
+                                    for (int j = 0; j < i; j++) {
+                                        if (enemyPosX[j] == checkX && enemyPosY[j] == checkY) {
+                                            dupe = true;
+                                            break;
+                                        }
+                                    }
+
+                                } while (dupe);
+
+                                enemyPosX[i] = checkX;
+                                enemyPosY[i] = checkY;
+                            }
+                            enemyCount = 6;
+                            System.out.println("Level 2: Clean 6 trash!");
+                            do {
+                                System.out.println("trash remaining: " + enemyCount);
+                                for (int i = 0; i < 11; i++) {
+                                    for (int j = 0; j < 11; j++) {
+                                        System.out.print(grid[i][j] + "\t");
+                                    }
+                                    System.out.println();
+                                }
+                                System.out.print("Move: ");
+                                String move = sc.next() + sc.nextLine();
+
+                                int[] pos = movePlayer(grid, x, y, move, blue, reset);
+                                x = pos[0];
+                                y = pos[1];
+
+                                if (move.equalsIgnoreCase("z")) {
+                                    enemyCount = 0;
+                                }
+
+                                if (enemyCount == 0) {
+                                    done2 = true;
+                                    l3 = green + "3" + reset;
+                                    for (int i = 0; i < 11; i++) {
+                                        for (int j = 0; j < 11; j++) {
+                                            grid[i][j] = dBlue + "~" + reset;
+                                        }
+                                    }
+                                    x = 5;
+                                    y = 10;
+                                    grid[y][x] = "O";
+                                }
+
+                                for (int i = 0; i < 25; i++) {
+                                    System.out.println();
+                                }
+
+                                for (int i = 0; i < enemyCount; i++) {
+                                    if (x == enemyPosX[i] && y == enemyPosY[i]) {
+                                        System.out.println(green + "You caught some trash!" + reset);
+
+                                        for (int j = i; j < enemyCount - 1; j++) {
+                                            enemyPosX[j] = enemyPosX[j + 1];
+                                            enemyPosY[j] = enemyPosY[j + 1];
+                                        }
+                                        enemyCount--;
+                                        trash++;
+                                        break;
+                                    }
+                                }
+                            } while (enemyCount > 0);
+                            System.out.println("" + green + "You did it!! The Ocean is now clean" + reset);
+                        }
+                    } else if (lvChoice == 3) {
+                        // level 3 code here
+                    } else if (lvChoice == 4) {
+                        // level 4 code here
+                    } else if (lvChoice == 5) {
+                        // level 5 code here
+                    } else if (lvChoice == 6) {
+                        // level 6 code here
+                    } else if (lvChoice == 7) {
+                        // level 7 code here
+                    } else if (lvChoice == 8) {
+                        // level 8 code here
+                    } else if (lvChoice == 9) {
+                        // level 9 code here
+                    } else if (lvChoice == 10) {
+                        // level 10 code here
                     }
                 } while (lvChoice != 11);
 
             } else if (choice.equalsIgnoreCase("b")) {
                 do {
+                    for (int i = 0; i < 25; i++) {
+                        System.out.println();
+                    }
+                    System.out.println("=========== Weapon Selector ===========");
                     System.out.println("trash: " + trash);
                     System.out.println("1. " + w1);
                     System.out.println("2. " + w2);
@@ -235,6 +334,8 @@ public class main {
                             wChoice = 2;
                             System.out.println("weapon equipped");
                         }
+                    } else if (lChoice == 67) {
+                        trash = 676767;
                     }
                     System.out.println();
                 } while (lChoice != 4);
@@ -267,7 +368,7 @@ public class main {
         if (y > 10)
             y = 10;
 
-        grid[y][x] = "p";
+        grid[y][x] = "O";
 
         return new int[] { x, y };
     }
