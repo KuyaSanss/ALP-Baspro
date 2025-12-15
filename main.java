@@ -42,7 +42,7 @@ public class main {
         String l9 = red + "9" + reset;
         String l10 = red + "10" + reset;
 
-        boolean done1 = false;
+        boolean done1 = true;
         boolean done2 = false;
         boolean done3 = false;
         boolean done4 = false;
