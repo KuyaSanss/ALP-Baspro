@@ -23,6 +23,7 @@ public class main {
         int checkY;
         boolean dupe;
         int level;
+        int HP = 120;
 
         // color
         String red = "\u001B[31m";
@@ -111,7 +112,7 @@ public class main {
                         randomizeEnemyPosition(enemyCount, enemyPosX, enemyPosY, rand);
 
                         System.out.println("Level " + level + ": Clean " + enemyCount + " trash!");
-                        trash = playMovementLoop(
+                        int[] trashEnemy = playMovementLoop(
                                 enemyCount,
                                 grid,
                                 enemyPosX,
@@ -124,20 +125,25 @@ public class main {
                                 reset,
                                 trash);
 
+                        trash = trash + trashEnemy[0];
+                        enemyCount = trashEnemy[1];
+
                         if (enemyCount == 0) {
                             done1 = true;
                             l2 = green + "2" + reset;
-                            for (int i = 0; i < 11; i++) {
-                                for (int j = 0; j < 11; j++) {
-                                    grid[i][j] = dBlue + "~" + reset;
-                                }
-                            }
-                            x = 5;
-                            y = 10;
-                            grid[y][x] = "O";
                         }
 
-                        System.out.println("" + green + "You did it!! The Ocean is now clean" + reset);
+                        for (int i = 0; i < 11; i++) {
+                            for (int j = 0; j < 11; j++) {
+                                grid[i][j] = dBlue + "~" + reset;
+                            }
+                        }
+
+                        x = 5;
+                        y = 10;
+                        grid[y][x] = "O";
+
+                        System.out.println(green + "You did it!! The Ocean is now clean" + reset);
                     } else if (lvChoice == 2) {
                         if (!done1) {
                             System.out.println(red + "You need to complete previous level first!" + reset);
@@ -150,7 +156,7 @@ public class main {
                             randomizeEnemyPosition(enemyCount, enemyPosX, enemyPosY, rand);
 
                             System.out.println("Level " + level + ": Clean " + enemyCount + " trash!");
-                            trash = playMovementLoop(
+                            int[] trashEnemy = playMovementLoop(
                                     enemyCount,
                                     grid,
                                     enemyPosX,
@@ -163,24 +169,377 @@ public class main {
                                     reset,
                                     trash);
 
-                            System.out.println("" + green + "You did it!! The Ocean is now clean" + reset);
+                            trash = trash + trashEnemy[0];
+                            enemyCount = trashEnemy[1];
+
+                            if (enemyCount == 0) {
+                                done2 = true;
+                                l3 = green + "3" + reset;
+                            }
+
+                            for (int i = 0; i < 11; i++) {
+                                for (int j = 0; j < 11; j++) {
+                                    grid[i][j] = dBlue + "~" + reset;
+                                }
+                            }
+
+                            x = 5;
+                            y = 10;
+                            grid[y][x] = "O";
+
+                            System.out.println(green + "You did it!! The Ocean is now clean" + reset);
                         }
                     } else if (lvChoice == 3) {
-                        // level 3 code here
+                        if (!done2) {
+                            System.out.println(red + "You need to complete previous level first!" + reset);
+                        } else {
+                            x = 5;
+                            y = 10;
+
+                            level = 3;
+                            enemyCount = 5;
+                            randomizeEnemyPosition(enemyCount, enemyPosX, enemyPosY, rand);
+
+                            System.out.println("Level " + level + ": Clean " + enemyCount + " trash!");
+                            int[] trashEnemy = playMovementLoop(
+                                    enemyCount,
+                                    grid,
+                                    enemyPosX,
+                                    enemyPosY,
+                                    x,
+                                    y,
+                                    sc,
+                                    green,
+                                    blue,
+                                    reset,
+                                    trash);
+
+                            trash = trash + trashEnemy[0];
+                            enemyCount = trashEnemy[1];
+
+                            if (enemyCount == 0) {
+                                done3 = true;
+                                l4 = green + "4" + reset;
+                            }
+
+                            for (int i = 0; i < 11; i++) {
+                                for (int j = 0; j < 11; j++) {
+                                    grid[i][j] = dBlue + "~" + reset;
+                                }
+                            }
+
+                            x = 5;
+                            y = 10;
+                            grid[y][x] = "O";
+                            System.out.println(green + "You did it!! The Ocean is now clean" + reset);
+                        }
                     } else if (lvChoice == 4) {
-                        // level 4 code here
+                        if (!done3) {
+                            System.out.println(red + "You need to complete previous level first!" + reset);
+                        } else {
+                            x = 5;
+                            y = 10;
+
+                            level = 4;
+                            enemyCount = 9;
+                            randomizeEnemyPosition(enemyCount, enemyPosX, enemyPosY, rand);
+
+                            System.out.println("Level " + level + ": Clean " + enemyCount + " trash!");
+                            int[] trashEnemy = playMovementLoop(
+                                    enemyCount,
+                                    grid,
+                                    enemyPosX,
+                                    enemyPosY,
+                                    x,
+                                    y,
+                                    sc,
+                                    green,
+                                    blue,
+                                    reset,
+                                    trash);
+
+                            trash = trash + trashEnemy[0];
+                            enemyCount = trashEnemy[1];
+
+                            if (enemyCount == 0) {
+                                done4 = true;
+                                l5 = green + "5" + reset;
+                            }
+
+                            for (int i = 0; i < 11; i++) {
+                                for (int j = 0; j < 11; j++) {
+                                    grid[i][j] = dBlue + "~" + reset;
+                                }
+                            }
+
+                            x = 5;
+                            y = 10;
+                            grid[y][x] = "O";
+                            System.out.println("" + green + "You did it!! The Ocean is now clean" + reset);
+                        }
                     } else if (lvChoice == 5) {
-                        // level 5 code here
+                        if (!done4) {
+                            System.out.println(red + "You need to complete previous level first!" + reset);
+                        } else {
+                            x = 5;
+                            y = 10;
+
+                            level = 5;
+                            enemyCount = 8;
+                            randomizeEnemyPosition(enemyCount, enemyPosX, enemyPosY, rand);
+
+                            System.out.println("Level " + level + ": Clean " + enemyCount + " trash!");
+                            int[] trashEnemy = playMovementLoop(
+                                    enemyCount,
+                                    grid,
+                                    enemyPosX,
+                                    enemyPosY,
+                                    x,
+                                    y,
+                                    sc,
+                                    green,
+                                    blue,
+                                    reset,
+                                    trash);
+
+                            trash = trash + trashEnemy[0];
+                            enemyCount = trashEnemy[1];
+
+                            if (enemyCount == 0) {
+                                done5 = true;
+                                l6 = green + "6" + reset;
+                            }
+
+                            for (int i = 0; i < 11; i++) {
+                                for (int j = 0; j < 11; j++) {
+                                    grid[i][j] = dBlue + "~" + reset;
+                                }
+                            }
+
+                            x = 5;
+                            y = 10;
+                            grid[y][x] = "O";
+                            System.out.println("" + green + "You did it!! The Ocean is now clean" + reset);
+                        }
                     } else if (lvChoice == 6) {
-                        // level 6 code here
+                        if (!done5) {
+                            System.out.println(red + "You need to complete previous level first!" + reset);
+                        } else {
+                            x = 5;
+                            y = 10;
+
+                            level = 6;
+                            enemyCount = 5;
+                            randomizeEnemyPosition(enemyCount, enemyPosX, enemyPosY, rand);
+
+                            System.out.println("Level " + level + ": Clean " + enemyCount + " trash!");
+                            int[] trashEnemy = playMovementLoop(
+                                    enemyCount,
+                                    grid,
+                                    enemyPosX,
+                                    enemyPosY,
+                                    x,
+                                    y,
+                                    sc,
+                                    green,
+                                    blue,
+                                    reset,
+                                    trash);
+
+                            trash = trash + trashEnemy[0];
+                            enemyCount = trashEnemy[1];
+
+                            if (enemyCount == 0) {
+                                done6 = true;
+                                l7 = green + "7" + reset;
+                            }
+
+                            for (int i = 0; i < 11; i++) {
+                                for (int j = 0; j < 11; j++) {
+                                    grid[i][j] = dBlue + "~" + reset;
+                                }
+                            }
+
+                            x = 5;
+                            y = 10;
+                            grid[y][x] = "O";
+                            System.out.println("" + green + "You did it!! The Ocean is now clean" + reset);
+                        }
                     } else if (lvChoice == 7) {
-                        // level 7 code here
+                        if (!done6) {
+                            System.out.println(red + "You need to complete previous level first!" + reset);
+                        } else {
+                            x = 5;
+                            y = 10;
+
+                            level = 7;
+                            enemyCount = 5;
+                            randomizeEnemyPosition(enemyCount, enemyPosX, enemyPosY, rand);
+
+                            System.out.println("Level " + level + ": Clean " + enemyCount + " trash!");
+                            int[] trashEnemy = playMovementLoop(
+                                    enemyCount,
+                                    grid,
+                                    enemyPosX,
+                                    enemyPosY,
+                                    x,
+                                    y,
+                                    sc,
+                                    green,
+                                    blue,
+                                    reset,
+                                    trash);
+
+                            trash = trash + trashEnemy[0];
+                            enemyCount = trashEnemy[1];
+
+                            if (enemyCount == 0) {
+                                done7 = true;
+                                l8 = green + "8" + reset;
+                            }
+
+                            for (int i = 0; i < 11; i++) {
+                                for (int j = 0; j < 11; j++) {
+                                    grid[i][j] = dBlue + "~" + reset;
+                                }
+                            }
+
+                            x = 5;
+                            y = 10;
+                            grid[y][x] = "O";
+                            System.out.println("" + green + "You did it!! The Ocean is now clean" + reset);
+                        }
                     } else if (lvChoice == 8) {
-                        // level 8 code here
+                        if (!done7) {
+                            System.out.println(red + "You need to complete previous level first!" + reset);
+                        } else {
+                            x = 5;
+                            y = 10;
+
+                            level = 8;
+                            enemyCount = 6;
+                            randomizeEnemyPosition(enemyCount, enemyPosX, enemyPosY, rand);
+
+                            System.out.println("Level " + level + ": Clean " + enemyCount + " trash!");
+                            int[] trashEnemy = playMovementLoop(
+                                    enemyCount,
+                                    grid,
+                                    enemyPosX,
+                                    enemyPosY,
+                                    x,
+                                    y,
+                                    sc,
+                                    green,
+                                    blue,
+                                    reset,
+                                    trash);
+
+                            trash = trash + trashEnemy[0];
+                            enemyCount = trashEnemy[1];
+
+                            if (enemyCount == 0) {
+                                done8 = true;
+                                l9 = green + "9" + reset;
+                            }
+
+                            for (int i = 0; i < 11; i++) {
+                                for (int j = 0; j < 11; j++) {
+                                    grid[i][j] = dBlue + "~" + reset;
+                                }
+                            }
+
+                            x = 5;
+                            y = 10;
+                            grid[y][x] = "O";
+                            System.out.println("" + green + "You did it!! The Ocean is now clean" + reset);
+                        }
                     } else if (lvChoice == 9) {
-                        // level 9 code here
+                        if (!done9) {
+                            System.out.println(red + "You need to complete previous level first!" + reset);
+                        } else {
+                            x = 5;
+                            y = 10;
+
+                            level = 9;
+                            enemyCount = 6;
+                            randomizeEnemyPosition(enemyCount, enemyPosX, enemyPosY, rand);
+
+                            System.out.println("Level " + level + ": Clean " + enemyCount + " trash!");
+                            int[] trashEnemy = playMovementLoop(
+                                    enemyCount,
+                                    grid,
+                                    enemyPosX,
+                                    enemyPosY,
+                                    x,
+                                    y,
+                                    sc,
+                                    green,
+                                    blue,
+                                    reset,
+                                    trash);
+
+                            trash = trash + trashEnemy[0];
+                            enemyCount = trashEnemy[1];
+
+                            if (enemyCount == 0) {
+                                done9 = true;
+                                l10 = green + "10" + reset;
+                            }
+
+                            for (int i = 0; i < 11; i++) {
+                                for (int j = 0; j < 11; j++) {
+                                    grid[i][j] = dBlue + "~" + reset;
+                                }
+                            }
+
+                            x = 5;
+                            y = 10;
+                            grid[y][x] = "O";
+                            System.out.println("" + green + "You did it!! The Ocean is now clean" + reset);
+                        }
                     } else if (lvChoice == 10) {
-                        // level 10 code here
+                        if (!done4) {
+                            System.out.println(red + "You need to complete previous level first!" + reset);
+                        } else {
+                            x = 5;
+                            y = 10;
+
+                            level = 10;
+                            enemyCount = 5;
+                            randomizeEnemyPosition(enemyCount, enemyPosX, enemyPosY, rand);
+
+                            System.out.println("Level " + level + ": Clean " + enemyCount + " trash!");
+                            int[] trashEnemy = playMovementLoop(
+                                    enemyCount,
+                                    grid,
+                                    enemyPosX,
+                                    enemyPosY,
+                                    x,
+                                    y,
+                                    sc,
+                                    green,
+                                    blue,
+                                    reset,
+                                    trash);
+
+                            trash = trash + trashEnemy[0];
+                            enemyCount = trashEnemy[1];
+
+                            if (enemyCount == 0) {
+                                System.out.println("" + green + "You did it!! all level is now clear" + reset);
+                            }
+
+                            for (int i = 0; i < 11; i++) {
+                                for (int j = 0; j < 11; j++) {
+                                    grid[i][j] = dBlue + "~" + reset;
+                                }
+                            }
+
+                            x = 5;
+                            y = 10;
+                            grid[y][x] = "O";
+
+                        }
                     }
                 } while (lvChoice != 11);
 
@@ -200,6 +559,7 @@ public class main {
 
                     if (lChoice == 1) {
                         wChoice = 1;
+                        HP = 120;
                     } else if (lChoice == 2) {
                         if (UPw2) {
                             System.out.println("Want to buy this weapon?" + green + "(20 trash)" + reset);
@@ -209,6 +569,7 @@ public class main {
 
                             if (buy == 1) {
                                 if (trash > 20) {
+                                    HP = 150;
                                     wChoice = 2;
                                     UPw2 = false;
                                     w2 = green + "Medium Net" + reset;
@@ -220,6 +581,7 @@ public class main {
                             }
                         } else {
                             wChoice = 2;
+                            HP = 150;
                             System.out.println("weapon equipped");
                         }
                     } else if (lChoice == 3) {
@@ -232,6 +594,7 @@ public class main {
                             if (buy == 1) {
                                 if (trash > 40) {
                                     wChoice = 3;
+                                    HP = 180;
                                     UPw3 = false;
                                     w3 = green + "Giganto Net" + reset;
                                     System.out.println("weapon purchased");
@@ -241,7 +604,8 @@ public class main {
                                 }
                             }
                         } else {
-                            wChoice = 2;
+                            wChoice = 3;
+                            HP = 180;
                             System.out.println("weapon equipped");
                         }
                     } else if (lChoice == 67) {
@@ -283,34 +647,7 @@ public class main {
         return new int[] { x, y };
     }
 
-    public static void randomizeEnemyPosition(
-            int enemyCount,
-            int[] enemyPosX,
-            int[] enemyPosY,
-            Random rand) {
-        for (int i = 0; i < enemyCount; i++) {
-            boolean dupe;
-            int checkX, checkY;
-
-            do {
-                dupe = false;
-                checkX = rand.nextInt(10) + 1;
-                checkY = rand.nextInt(10) + 1;
-
-                for (int j = 0; j < i; j++) {
-                    if (enemyPosX[j] == checkX && enemyPosY[j] == checkY) {
-                        dupe = true;
-                        break;
-                    }
-                }
-            } while (dupe);
-
-            enemyPosX[i] = checkX;
-            enemyPosY[i] = checkY;
-        }
-    }
-
-    public static int playMovementLoop(
+    public static int[] playMovementLoop(
             int enemyCount,
             String[][] grid,
             int[] enemyPosX,
@@ -363,7 +700,34 @@ public class main {
 
         } while (enemyCount > 0);
 
-        return trash;
+        return new int[] { trash, enemyCount };
+    }
+
+    public static void randomizeEnemyPosition(
+            int enemyCount,
+            int[] enemyPosX,
+            int[] enemyPosY,
+            Random rand) {
+        for (int i = 0; i < enemyCount; i++) {
+            boolean dupe;
+            int checkX, checkY;
+
+            do {
+                dupe = false;
+                checkX = rand.nextInt(10) + 1;
+                checkY = rand.nextInt(10) + 1;
+
+                for (int j = 0; j < i; j++) {
+                    if (enemyPosX[j] == checkX && enemyPosY[j] == checkY) {
+                        dupe = true;
+                        break;
+                    }
+                }
+            } while (dupe);
+
+            enemyPosX[i] = checkX;
+            enemyPosY[i] = checkY;
+        }
     }
 
 }
